@@ -1,0 +1,72 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="PLAY">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TITLE">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="AUTHOR"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FM">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="P" maxOccurs="unbounded" minOccurs="0"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PERSONAE">
+          <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+              <xs:element type="xs:string" name="TITLE"/>
+              <xs:element type="xs:string" name="PERSONA" maxOccurs="unbounded" minOccurs="0"/>
+              <xs:element name="PGROUP">
+                <xs:complexType mixed="true">
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="PERSONA" maxOccurs="unbounded" minOccurs="0"/>
+                    <xs:element type="xs:string" name="GRPDESCR" minOccurs="0"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:string" name="SCNDESCR"/>
+        <xs:element type="xs:string" name="PLAYSUBT"/>
+        <xs:element name="ACT" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="TITLE"/>
+              <xs:element name="SCENE" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:choice maxOccurs="unbounded" minOccurs="0">
+                    <xs:element type="xs:string" name="TITLE"/>
+                    <xs:element type="xs:string" name="STAGEDIR"/>
+                    <xs:element name="SPEECH">
+                      <xs:complexType mixed="true">
+                        <xs:choice maxOccurs="unbounded" minOccurs="0">
+                          <xs:element type="xs:string" name="SPEAKER"/>
+                          <xs:element name="LINE">
+                            <xs:complexType mixed="true">
+                              <xs:sequence>
+                                <xs:element type="xs:string" name="STAGEDIR" minOccurs="0"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element type="xs:string" name="STAGEDIR"/>
+                        </xs:choice>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:choice>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
